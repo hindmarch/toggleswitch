@@ -1,0 +1,125 @@
+//   _____                 _        _____          _ _       _     
+//  |_   _|               | |      /  ___|        (_) |     | |    
+//    | | ___   __ _  __ _| | ___  \ `--.__      ___| |_ ___| |__  
+//    | |/ _ \ / _` |/ _` | |/ _ \  `--. \ \ /\ / / | __/ __| '_ \ 
+//    | | (_) | (_| | (_| | |  __/ /\__/ /\ V  V /| | || (__| | | |
+//    \_/\___/ \__, |\__, |_|\___| \____/  \_/\_/ |_|\__\___|_| |_|
+//              __/ | __/ |                                        
+//             |___/ |___/                                         
+
+///////////////////////////////////
+// TOGGLE SWITCH CHECKBOX        //
+// REPLACEMENT                   //
+///////////////////////////////////
+// Component to replace a        //
+// standard checkbox with a      //
+// styled toggle switch.         //
+//                               //
+///////////////////////////////////
+
+
+@mixin transition($transition...) {
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+
+@mixin noselect() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; 
+  user-select: none;
+}
+
+$toggle-label-color: #fff !default;
+$toggle-label-color-alt: linear-gradient(to right, #ffffff 0%,#f1f1f1 50%,#ececec 51%,#f6f6f6 100%);
+$toggle-label-color-ie: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
+$toggle-off-color: #d63832 !default;
+$toggle-on-color: rgb(24, 121, 103) !default;
+$toggle-box-shadow-color: rgba(0, 0, 0, 0.3) !default;
+$toggle-disabled-color: #808080 !default;
+$toggle-label-disabled-color: #c2c2c2 !default;
+$toggle-text-disabled-color: #c2c2c2 !default;
+
+.toggle-switch {
+  margin-left: -9999px;
+  position: absolute;
+  visibility: hidden;
+
+  + label::before,
+  + label::after {
+    bottom: 1px;
+    content: '';
+    display: block;
+    left: 1px;
+    position: absolute;
+    top: 1px;
+  }
+
+  + label {
+    @include noselect();
+    background-color: $toggle-off-color;
+    border-radius: 4px;
+    color: $toggle-label-color;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Arimo', sans-serif;
+    font-size: 13px;
+    height: 24px;
+    outline: none;
+    padding-right: 12px;
+    position: relative;
+    text-transform: uppercase;    
+    width: 60px;
+
+    &::before {
+      @include transition(.2s ease-in);
+      background-color: $toggle-off-color;
+      border-radius: 4px;
+      content: 'Off';
+      padding: 4px 5px 0 0;
+      right: 1px;
+      text-align: right;
+    }
+
+    &::after {
+      @include transition(.2s ease-out);
+      background-color: $toggle-label-color;
+      background: $toggle-label-color-alt;
+      filter: $toggle-label-color-ie;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px $toggle-box-shadow-color;
+      width: 35px;
+    }
+  }
+
+  &:disabled + label,
+  &:disabled + label::before,
+  &:checked:disabled + label::before {
+    background-color: $toggle-disabled-color;
+    color: $toggle-text-disabled-color;
+    cursor: default;
+  }
+
+  &:disabled + label::after {
+    background-color: $toggle-label-disabled-color;
+  }
+
+  &:checked + label {
+    background-color: $toggle-on-color;
+
+    &::before {
+      background-color: $toggle-on-color;
+      content: 'On';
+      padding: 4px 0 0 7px;
+      text-align: left;
+    }
+
+    &::after {
+      margin-left: 35px;
+    }
+  }
+}

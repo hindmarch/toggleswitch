@@ -1,0 +1,79 @@
+.toggle-switch {
+  margin-left: -9999px;
+  position: absolute;
+  visibility: hidden;
+}
+.toggle-switch + label::before,
+.toggle-switch + label::after {
+  bottom: 1px;
+  content: '';
+  display: block;
+  left: 1px;
+  position: absolute;
+  top: 1px;
+}
+.toggle-switch + label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #d63832;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Arimo', sans-serif;
+  font-size: 13px;
+  height: 24px;
+  outline: none;
+  padding-right: 12px;
+  position: relative;
+  text-transform: uppercase;
+  width: 60px;
+}
+.toggle-switch + label::before {
+  -moz-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+  background-color: #d63832;
+  border-radius: 4px;
+  content: 'Off';
+  padding: 4px 5px 0 0;
+  right: 1px;
+  text-align: right;
+}
+.toggle-switch + label::after {
+  -moz-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  background-color: #fff;
+  background: linear-gradient(to right, #ffffff 0%, #f1f1f1 50%, #ececec 51%, #f6f6f6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  width: 35px;
+}
+.toggle-switch:disabled + label, .toggle-switch:disabled + label::before, .toggle-switch:checked:disabled + label::before {
+  background-color: #808080;
+  color: #c2c2c2;
+  cursor: default;
+}
+.toggle-switch:disabled + label::after {
+  background-color: #c2c2c2;
+}
+.toggle-switch:checked + label {
+  background-color: #187967;
+}
+.toggle-switch:checked + label::before {
+  background-color: #187967;
+  content: 'On';
+  padding: 4px 0 0 7px;
+  text-align: left;
+}
+.toggle-switch:checked + label::after {
+  margin-left: 35px;
+}
